@@ -1,7 +1,10 @@
-
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from .models import *
-from .forms import ArticleForm
+from .forms import ArticleForm, CustomUserCreationForm
+
 
 class HomeView(TemplateView):
     template_name = 'classviewshome/home.html'
@@ -27,3 +30,17 @@ class ArticleCreateView(CreateView):
     model = Article
     form_class = ArticleForm
     success_url = '/articles/'
+
+
+class UserCreateView(CreateView):
+    model = CustomUser
+    form_class = CustomUserCreationForm
+    success_url = reverse_lazy('home')
+    template_name = 'classviewshome/register.html'
+    def form_valid(self, form):
+        user = form.save(commit=False)
+        user.full_name=form.cleaned_data['full_name']
+
+        user.save()
+        login(self.request, user)
+        return super().form_valid(form)
