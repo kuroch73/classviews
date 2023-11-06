@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from .models import *
-from .forms import ArticleForm, CustomUserCreationForm
+from .forms import ArticleForm, CustomUserCreationForm, BookForm
 
 
 class HomeView(TemplateView):
@@ -44,3 +44,21 @@ class UserCreateView(CreateView):
         user.save()
         login(self.request, user)
         return super().form_valid(form)
+    
+class BookListView(ListView):
+    model = Book
+
+class BookDetailView(DetailView):
+    model = Book
+
+def get_context_date(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['article_books'] = Book.objects.filter(article=self.object)
+    return context
+
+
+
+class BookCreateView(CreateView):
+    model = Book
+    form_class = BookForm
+    success_url = '/books/'
