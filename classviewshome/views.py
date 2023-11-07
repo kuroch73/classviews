@@ -23,7 +23,7 @@ class ArticleDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['article_books'] = Book.objects.filter(article=self.object)
+        context['article_books'] = Article.objects.filter(article=self.object)
         return context
 
 class ArticleCreateView(CreateView):
