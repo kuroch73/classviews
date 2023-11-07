@@ -1,9 +1,12 @@
 from django.contrib.auth import login
 from django.contrib.auth.models import User
+from django.template import context
 from django.urls import reverse_lazy
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from .models import *
 from .forms import ArticleForm, CustomUserCreationForm, BookForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
 class HomeView(TemplateView):
@@ -48,13 +51,23 @@ class UserCreateView(CreateView):
 class BookListView(ListView):
     model = Book
 
+
 class BookDetailView(DetailView):
     model = Book
 
-def get_context_date(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    context['article_books'] = Book.objects.filter(article=self.object)
-    return context
+    def get_context_date(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['article_books'] = Book.objects.filter(article=self.object)
+        return context
+class ProfileView(TemplateView):
+    template_name = 'classviewshome/profile.html'
+    @method_decorator(login_required)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request,*args,**kwargs)
+    def get_context_data(self, **kwargs):
+        context=super().get_context_data(**kwargs)
+        context['user']=self.request.user
+
 
 
 
