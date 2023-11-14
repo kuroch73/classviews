@@ -82,6 +82,7 @@ DATABASES = {
     }
 }
 AUTH_USER_MODEL = 'classviewshome.CustomUser'
+LOGOUT_REDIRECT_URL = 'login'
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

@@ -1,4 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-    content
+<section class="hero vh-100">
+    <div class="container d-flex align-items-center h-75">
+        <div class="col-12 col-sm-8 col-lg-5 ps-0 ps-md-2 ps-lg-4">
+        <h1 class="mb-2">The companion app for your bookshelf</h1>
+            <a href="{% url 'register' %}" class="w-100 w-md-50 btn btn-dark mb-2"> Create your account </a>
+            <p>Already a member? <a href="{% url 'login' %}">Sign in</a> </p>
+    </div>
+    </div>
+ </section>
+<section class="hero vh-100">
+    <div class="container d-flex align-items-center h-75">
+        <div class="col-12 col-sm-8 col-lg-5 ps-0 ps-md-2 ps-lg-4">
+        <h1 class="mb-2">The companion app for your bookshelf</h1>
+            <a href="{% url 'register' %}" class="w-100 w-md-50 btn btn-dark mb-2"> Create your account </a>
+            <p>Already a member? <a href="{% url 'login' %}">Sign in</a> </p>
+    </div>
+    </div>
+ </section>
 {% endblock content %}
