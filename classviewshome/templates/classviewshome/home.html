@@ -1,21 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
 <section class="hero vh-100">
     <div class="container d-flex align-items-center h-75">
         <div class="col-12 col-sm-8 col-lg-5 ps-0 ps-md-2 ps-lg-4">
-        <h1 class="mb-2">The companion app for your bookshelf</h1>
+            <h1 class="mb-2">The companion app for your bookshelf</h1>
             <a href="{% url 'register' %}" class="w-100 w-md-50 btn btn-dark mb-2"> Create your account </a>
             <p>Already a member? <a href="{% url 'login' %}">Sign in</a> </p>
+        </div>
     </div>
+</section>
+
+<section>
+    <div class="container d-flex align-items-center justify-content-center text-center vh-100">
+        <div class="col-12 col-md-10 col-lg-8">
+            <h2 class="mb-4"> Meet the team </h2>
+            <p class="mb-5">There is three friends scattered throughout Europe, we were looking for a way to discover books and
+                share our own recommendations. Nothing cut the mustard, so we took the challenge on. We may not have
+                deep pockets or lots of time, but we're willing to bet we can make up for it by working smart and taking
+                pride in our work.</p>
+            <div class="row">
+                <div class="col-12 col-sm-4 col-lg-4">
+                    <img class="mb-2 col-2 col-sm-5" src="{% static 'img/Rectangle.png' %}">
+                    <h3> Yavor Punchev & Fuji</h3>
+                    <p> Sofia, Bulgaria</p>
+                </div>
+                <div class="col-12 col-sm-4 col-lg-4">
+                    <img class="mb-2 col-2 col-sm-5" src="{% static 'img/Rectangle (1).png' %}">
+                    <h3>Joe Alcorn</h3>
+                    <p> London, United Kingdom</p>
+                </div>
+                <div class="col-12 col-sm-4 col-lg-4">
+                    <img class="mb-2 col-2 col-sm-5" src="{% static 'img/Rectangle (2).png' %}">
+                    <h3> Aziz Firat</h3>
+                    <p> Oslo, Norway</p>
+                </div>
+            </div>
+        </div>
     </div>
- </section>
-<section class="hero vh-100">
-    <div class="container d-flex align-items-center h-75">
-        <div class="col-12 col-sm-8 col-lg-5 ps-0 ps-md-2 ps-lg-4">
-        <h1 class="mb-2">The companion app for your bookshelf</h1>
-            <a href="{% url 'register' %}" class="w-100 w-md-50 btn btn-dark mb-2"> Create your account </a>
-            <p>Already a member? <a href="{% url 'login' %}">Sign in</a> </p>
-    </div>
-    </div>
- </section>
+
+</section>
 {% endblock content %}
